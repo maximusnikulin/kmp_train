@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B1A09EEA2EF6F0B100E4F316 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A09EE92EF6F0B100E4F316 /* AppDelegate.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		B1A09EE92EF6F0B100E4F316 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1534A1CBA113D1202FBF82C /* Kmp_train.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kmp_train.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -50,6 +55,7 @@
 		338157FBB7E34B553301FE92 = {
 			isa = PBXGroup;
 			children = (
+				B1A09EE92EF6F0B100E4F316 /* AppDelegate.swift */,
 				F38F7820A1C086B2A50E0FD9 /* Configuration */,
 				CCC129AB2C75045C2BB30EA5 /* iosApp */,
 				845980CB3C32BB67BFF50FE2 /* Products */,
@@ -161,6 +167,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1A09EEA2EF6F0B100E4F316 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
