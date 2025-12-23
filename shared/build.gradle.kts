@@ -18,7 +18,9 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "Shared"
-            isStatic = true
+            // TODO: add automaticaly check for build in debug
+            isStatic = false
+            binaryOption("bundleId", "com.somesome.Shared")
         }
     }
     

@@ -6,7 +6,7 @@ import Foundation
 import Shared
 
 class NewsListVm: ObservableObject {
-    @Published var news: [NewsItem] = []
+    @Published var items: [NewsItem] = []
     
     private lazy var vm: NewsVM? = {
 
