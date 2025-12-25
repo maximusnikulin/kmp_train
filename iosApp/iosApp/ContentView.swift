@@ -2,27 +2,30 @@ import SwiftUI
 import Shared
 
 struct ContentView: View {
-    @State private var showContent = false
+    @ObservedObject var viewModel: ContentViewModel = .init()
+    
     var body: some View {
-        VStack {
-            Button("Click me!") {
-                withAnimation {
-                    showContent = !showContent
-                }
+        VStack(alignment: .center) {
+            Text("Press for color")
+            Button(action: {
+                // Действие по кнопке
+                self.viewModel.presenter?.randomizeColor()
+            }) {
+                Text("Change color")
             }
-
-            if showContent {
-                VStack(spacing: 16) {
-                    Image(systemName: "swift")
-                        .font(.system(size: 200))
-                        .foregroundColor(.accentColor)
-                    Text("SwiftUI: \(Greeting().greet())")
-                }
-                .transition(.move(edge: .top).combined(with: .opacity))
+        }.padding(10)
+            .frame(
+                minWidth: 0,
+                maxWidth: .infinity,
+                minHeight: 0,
+                maxHeight: .infinity,
+                alignment: .center
+            )
+        // Цвет из VM
+            .background(viewModel.color)
+            .onAppear {
+                viewModel.setup()
             }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .padding()
     }
 }
 

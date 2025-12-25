@@ -13,7 +13,6 @@ struct NewsItemRow: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            
             KFImage(URL(string: item.urlToImage ?? ""))
                 .resizable()
                 .frame(width: 200, height: 150)
