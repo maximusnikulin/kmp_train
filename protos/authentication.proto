@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package ZeusApiPackage;
+
+import "common.proto";
+
+service AuthenticationService {
+  rpc SignInEmail (SignInEmailRequest) returns (Empty) {}  
+  rpc SignInSocial (SignInSocialRequest) returns (SignInSuccessResponse) {}
+  rpc ConfirmEmailCode (ConfirmEmailCodeRequest) returns (SignInSuccessResponse) {}
+  rpc ConfirmPhoneCode (ConfirmPhoneCodeRequest) returns (SignInSuccessResponse) {}
+  rpc RefreshToken (RefreshTokenRequest) returns (SignInSuccessResponse) {}
+}
+
+enum SocialProviders {
+  APPLE = 0;
+  FACEBOOK = 1;
+  GOOGLE = 2;
+  TID = 3;
+}
+
+message AppleUserData {
+  string user = 1;
+  string email = 2;
+  repeated int32 authorizedScopes = 3;
+
+  message FullName {
+    string namePrefix = 1;
+    string givenName = 2;
+    string familyName = 3;
+    string nickname = 4;
+    string middleName = 5;
+    string nameSuffix = 6;
+  }
+
+  FullName fullName = 4;
+  string identityToken = 5;
+  string authorizationCode = 6;
+  int32 realUserStatus = 7;
+  string state = 8;
+  string nonce = 9;
+}
+
+message SignInEmailRequest {
+  string deviceId = 1;
+  string email = 2;
+  string pointOfContact = 3;
+};
+
+message SignInSocialRequest {
+  string deviceId = 1;
+  string token = 2;
+  SocialProviders provider = 3;
+  AppleUserData appleUserData = 4;
+  string pointOfContact = 5;
+  string googleClientId = 6;
+}
+
+message ConfirmEmailCodeRequest {
+  string email = 1;
+  string code = 2;
+  string pointOfContact = 3;
+};
+
+message ConfirmPhoneCodeRequest {
+  string phone = 1;
+  string code = 2;
+  string pointOfContact = 3;
+};
+
+message RefreshTokenRequest {
+  string refreshToken = 1;
+};
+
+message SignInSuccessResponse {
+  string accessToken = 1;
+  string refreshToken = 2;
+  bool isRegistration = 3;
+}

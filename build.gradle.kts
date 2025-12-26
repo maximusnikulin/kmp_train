@@ -9,3 +9,9 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.google.services) apply false
 }
+
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+}

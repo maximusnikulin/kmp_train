@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package ZeusApiPackage;
+
+message Empty {}
+
+enum Platforms {
+  IOS = 0;
+  ANDROID = 1;
+}
+
+message ImageObject {
+  string url = 1;
+  int32 width = 2;
+  int32 height = 3;
+}

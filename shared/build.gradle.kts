@@ -1,18 +1,20 @@
-
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    //TODO: place to libs
+    id("io.github.timortel.kmpgrpc.plugin") version "1.5.0"
 }
 
 kotlin {
+    applyDefaultHierarchyTemplate()
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     listOf(
         iosArm64(),
         iosSimulatorArm64()
@@ -24,7 +26,7 @@ kotlin {
             binaryOption("bundleId", "com.somesome.Shared")
         }
     }
-    
+
     sourceSets {
         commonMain.dependencies {
             // put your Multiplatform dependencies here
@@ -35,6 +37,25 @@ kotlin {
             implementation(libs.kotlin.test)
         }
     }
+}
+
+kmpGrpc {
+    // declare the targets you need.
+    common() // required
+    jvm()
+    android()
+    js()
+    native()  // for native targets like iOS
+
+    // Optional: if the protobuf well known types should be included
+    // https://protobuf.dev/reference/protobuf/google.protobuf/
+    includeWellKnownTypes = true
+
+    // Optional: if all generated source files should have 'internal' visibility.
+    internalVisibility = true
+
+    // Specify the folders where your proto files are located, you can list multiple.
+    protoSourceFolders = project.files("../protos")
 }
 
 android {
